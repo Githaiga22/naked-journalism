@@ -79,7 +79,7 @@ export function WaitlistModal({ onClose }: WaitlistModalProps) {
   if (isSuccess) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-        <div className="bg-bg-surface rounded-xl p-8 lg:p-10 max-w-md w-full shadow-2xl border border-bg-elevated animate-in">
+        <div className="relative bg-bg-surface rounded-xl p-8 lg:p-10 max-w-md w-full shadow-2xl border border-bg-elevated animate-in">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-text-secondary hover:text-text-primary"
@@ -143,7 +143,7 @@ export function WaitlistModal({ onClose }: WaitlistModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div className="bg-bg-surface rounded-xl p-8 lg:p-10 max-w-lg w-full shadow-2xl border border-bg-elevated">
+      <div className="relative bg-bg-surface rounded-xl p-8 lg:p-10 max-w-lg w-full shadow-2xl border border-bg-elevated">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-text-secondary hover:text-text-primary"
