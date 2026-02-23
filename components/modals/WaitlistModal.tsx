@@ -47,21 +47,29 @@ export function WaitlistModal({ onClose }: WaitlistModalProps) {
     setIsSubmitting(true);
 
     try {
-      // TODO: Integrate with Supabase
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         setIsSuccess(true);
       } else {
-        throw new Error("Failed to submit");
+        // Handle specific error cases
+        if (response.status === 409) {
+          setErrors({ submit: "This email is already on the waitlist!" });
+        } else if (data.error) {
+          setErrors({ submit: data.error });
+        } else {
+          setErrors({ submit: "Failed to join waitlist. Please try again." });
+        }
       }
     } catch (error) {
       console.error("Error submitting waitlist:", error);
-      setErrors({ submit: "Failed to join waitlist. Please try again." });
+      setErrors({ submit: "Network error. Please check your connection and try again." });
     } finally {
       setIsSubmitting(false);
     }
